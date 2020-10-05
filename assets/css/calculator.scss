@@ -1,0 +1,177 @@
+.cal-div {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.result {
+  font-size: 40px;
+  overflow-x: auto;
+}
+.result::-webkit-scrollbar {
+  height: 5px;
+}
+
+.result::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.result::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.cal-input {
+  overflow-x: auto;
+  height: 38px;
+  font-size: 25px;
+}
+
+.cal-input::-webkit-scrollbar {
+  height: 5px;
+}
+
+.cal-input::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.cal-input::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.cal-card {
+  background-color: #fff;
+  height: 540px;
+  width: 360px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 16px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 30px;
+  padding: 40px;
+  .calc-button {
+    background: #a7d4fa; /* light background with opacity 50% */
+    border: none; /* black border */
+    padding: 15px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 16px 0 rgba(0, 0, 0, 0.05);
+    color: #727374; /* white text */
+    border-radius: 10px; /* rounded corners */
+    font-size: 22px; /* larger fonts */
+    cursor: pointer; /* make it look clickable */
+    &:hover {
+      transition: 0.2s;
+      background: #81c1f4; /* light background with opacity 50% */
+    }
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .calculator-buttons {
+    /* small spacing within our container */
+    padding-top: 20px;
+    /* the grid stuff! */
+    display: grid;
+
+    /* create 4 columns */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    /* add the grid gap */
+    grid-gap: 15px;
+  }
+
+  .is-zero {
+    grid-column: span 2;
+  }
+
+  .is-equals {
+    grid-row: span 3;
+  }
+
+  .is-plus {
+    grid-row: span 2;
+  }
+}
+
+.display-filter {
+  padding: 10px;
+  .filter {
+    height: 36px;
+    display: flex;
+
+    .input-search {
+      height: 28px;
+      border: none;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2),
+        0 6px 16px 0 rgba(0, 0, 0, 0.03);
+      border-radius: 10px;
+      margin-left: 5px;
+
+      padding: 5px;
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    select option:checked {
+      background: linear-gradient(#a7d4fa, #a7d4fa);
+      background-color: #81c1f4 !important; /* for IE */
+      color: #fff !important;
+    }
+
+    .input-select {
+      text-align-last: center;
+      height: 28px;
+      width: 118px;
+      border: none;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2),
+        0 6px 16px 0 rgba(0, 0, 0, 0.03);
+      border-radius: 10px;
+      margin-left: 5px;
+
+      padding: 5px;
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}
+
+.display-card {
+  background-color: #fff;
+  height: 70vh;
+  width: 360px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 16px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 30px;
+  padding: 25px;
+  overflow-y: auto;
+
+  .result {
+    overflow-x: auto;
+    font-size: 35px;
+  }
+
+  .cal-input {
+    overflow-x: auto;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  .space-m {
+    margin-top: 15px;
+  }
+
+  .history-container {
+    display: flex;
+    justify-content: space-between;
+    .history-date {
+      color: #a7d4fa;
+    }
+  }
+}
+
+.calc-button {
+  background: #faa7a7; /* light background with opacity 50% */
+  border: none; /* black border */
+  padding: 10px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 16px 0 rgba(0, 0, 0, 0.05);
+  color: #727374; /* white text */
+  border-radius: 10px; /* rounded corners */
+  font-size: 22px; /* larger fonts */
+  cursor: pointer; /* make it look clickable */
+}

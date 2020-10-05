@@ -1,0 +1,22 @@
+.cal-navbar {
+  overflow: hidden;
+  background-color: white;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 16px 0 rgba(0, 0, 0, 0.05);
+  .title {
+    margin: 10px 0 0px 50px;
+  }
+}
+
+@media (max-width: 970px) {
+  .cal-navbar {
+    .title {
+      width: 100%;
+      margin-left: 0px;
+      text-align: center;
+    }
+  }
+}
