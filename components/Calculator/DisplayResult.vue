@@ -35,6 +35,14 @@
           </div>
         </div>
       </div>
+      <ConfirmModal
+        btnTextCancel="ยกเลิก"
+        btnTextConfirm="ตกลง"
+        ref="Confirm"
+        @confirmed="confirmClicked"
+      >
+        <template #ConfirmText>คุณต้องการลบประวัติการค้นหา?</template>
+      </ConfirmModal>
       <button id="myBtn" class="calc-button" @click="clearAll">Clear</button>
     </div>
   </div>
@@ -56,10 +64,13 @@ export default {
   methods: {
     ...mapActions("calculator", ["clear", "initialiseStore", "find", "select"]),
     clearAll() {
-      this.clear();
+      this.$refs.Confirm.open();
     },
     search() {
       this.find(this.query);
+    },
+    confirmClicked(value) {
+      if (value) this.clear();
     }
   },
   computed: {

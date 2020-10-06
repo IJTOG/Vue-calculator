@@ -153,14 +153,15 @@
   border-radius: 30px;
   padding: 25px;
   overflow-y: auto;
+  word-break: break-all;
 
   .result {
-    overflow-x: auto;
+    overflow-y: auto;
     font-size: 35px;
   }
 
   .cal-input {
-    overflow-x: auto;
+    overflow-y: auto;
     height: 38px;
     font-size: 18px;
   }
