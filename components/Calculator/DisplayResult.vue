@@ -5,48 +5,71 @@
         <h4>Results</h4>
         <input
           type="text"
+          v-model="query"
+          v-on:keydown.enter.prevent="search"
           class="input-search"
           placeholder="Search by result, date"
         />
         <select class="input-select decorated" v-model="selected">
-          <option :value="0">All</option>
-          <option :value="1">A</option>
-          <option :value="2">B</option>
+          <option value="">All</option>
+          <option value="Calculator A">A</option>
+          <option value="Calculator B">B</option>
         </select>
       </div>
       <div class="display-card">
-        <div class="space-m" v-for="(history, index) in histories" :key="index">
-          <div class="history-container">
-            <h4>{{ history.name }}</h4>
-            <h5 class="history-date">{{ history.date }}</h5>
-          </div>
-          <div>
-            <span class="result">{{ history.result }}</span>
-            <hr />
-            <span class="cal-input" v-html="history.calculation"></span>
+        <div>
+          <div
+            class="space-m"
+            v-for="(history, index) in filtered"
+            :key="index"
+          >
+            <div class="history-container">
+              <h4>{{ history.name }}</h4>
+              <h5 class="history-date">{{ history.date }}</h5>
+            </div>
+            <div>
+              <span class="result">{{ history.result }}</span>
+              <hr />
+              <span class="cal-input" v-html="history.display"></span>
+            </div>
           </div>
         </div>
       </div>
-      <button id="myBtn" class="calc-button">Clear</button>
+      <button id="myBtn" class="calc-button" @click="clearAll">Clear</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
-  data: function () {
+  mounted() {
+    if (this.initialiseStore()) this.find();
+  },
+  data: function() {
     return {
-      selected: 0,
-      histories: [
-        {
-          name: "Caluclate A",
-          date: "09/09/2030 - 23:33.22",
-          result: "124",
-          calculation: "2 <span style='color:#E623CF;'>x</span> 62",
-        },
-      ],
+      selected: "",
+      query: ""
     };
   },
+  methods: {
+    ...mapActions("calculator", ["clear", "initialiseStore", "find", "select"]),
+    clearAll() {
+      this.clear();
+    },
+    search() {
+      this.find(this.query);
+    }
+  },
+  computed: {
+    ...mapState("calculator", ["filtered"])
+  },
+  watch: {
+    selected() {
+      this.select(this.selected);
+    }
+  }
 };
 </script>
 

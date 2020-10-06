@@ -58,20 +58,21 @@
 </template>
 
 <script>
-import queryString from "query-string";
+import { mapState, mapActions } from "vuex";
+import moment from "moment";
 
 export default {
   props: { name: String, default: "Calculator" },
-  data: function () {
+  data: function() {
     return {
       display: "",
       summary: "",
       operators: ["+", "-", "*", "."],
-      result: 0,
-      queryString,
+      result: 0
     };
   },
   methods: {
+    ...mapActions("calculator", ["save"]),
     clear() {
       this.display = "";
       this.summary = "";
@@ -80,7 +81,10 @@ export default {
     add(str, value) {
       let lastChar = this.summary.slice(-1);
 
-      if (this.summary.length === 0 && this.operators.indexOf(value) > -1) {
+      if (
+        (this.summary.length === 0 && this.operators.indexOf(value) > -1) ||
+        (this.summary.indexOf(".") > -1 && value === ".")
+      ) {
         return;
       }
 
@@ -106,9 +110,21 @@ export default {
           `http://api.mathjs.org/v4/?expr=${params}`
         );
         this.result = data;
+
+        const result = {
+          name: this.name,
+          result: this.result,
+          summary: this.summary,
+          display: this.display,
+          date: moment(new Date()).format("DD/MM/YYYY HH:mm.ss")
+        };
+        this.save(result);
       }
-    },
+    }
   },
+  computed: {
+    ...mapState("calculator", ["results"])
+  }
 };
 </script>
 
