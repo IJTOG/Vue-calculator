@@ -18,7 +18,7 @@
           </button>
 
           <button
-            class="calc-button"
+            class="calc-button is-minus"
             @click="add(` <span style='color:#E623CF;'>&minus;</span> `, '-')"
           >
             &minus;
@@ -29,24 +29,24 @@
           >
             &plus;
           </button>
-          <button class="calc-button" @click="add('7', 7)">7</button>
-          <button class="calc-button" @click="add('8', 8)">8</button>
-          <button class="calc-button" @click="add('9', 9)">9</button>
+          <button class="calc-button seven" @click="add('7', 7)">7</button>
+          <button class="calc-button eight" @click="add('8', 8)">8</button>
+          <button class="calc-button nine" @click="add('9', 9)">9</button>
 
-          <button class="calc-button" @click="add('4', 4)">4</button>
-          <button class="calc-button" @click="add('5', 5)">5</button>
-          <button class="calc-button" @click="add('6', 6)">6</button>
+          <button class="calc-button four" @click="add('4', 4)">4</button>
+          <button class="calc-button five" @click="add('5', 5)">5</button>
+          <button class="calc-button six" @click="add('6', 6)">6</button>
           <button class="calc-button is-equals" @click="submit">
             &equals;
           </button>
 
-          <button class="calc-button" @click="add('1', 1)">1</button>
-          <button class="calc-button" @click="add('2', 2)">2</button>
-          <button class="calc-button" @click="add('3', 3)">3</button>
+          <button class="calc-button one" @click="add('1', 1)">1</button>
+          <button class="calc-button two" @click="add('2', 2)">2</button>
+          <button class="calc-button three" @click="add('3', 3)">3</button>
 
           <button class="calc-button is-zero" @click="add('0', 0)">0</button>
           <button
-            class="calc-button"
+            class="calc-button dot"
             @click="add(`<span style='color:#E623CF;'>.</span>`, '.')"
           >
             .
@@ -80,11 +80,7 @@ export default {
     },
     add(str, value) {
       let lastChar = this.summary.slice(-1);
-
-      if (
-        (this.summary.length === 0 && this.operators.indexOf(value) > -1) ||
-        (this.summary.indexOf(".") > -1 && value === ".")
-      ) {
+      if (this.summary.length === 0 && this.operators.indexOf(value) > -1) {
         return;
       }
 
